@@ -21,7 +21,7 @@ Read the [medium post](https://medium.com/criteo-engineering/introducing-autofai
 
 ## Installation
 
-To install run `pip install autofaiss`
+To install run `pip install autofaiss_rom1504`
 
 It's probably best to create a virtual env:
 ``` bash

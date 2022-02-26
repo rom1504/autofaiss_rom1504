@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](https://semver.org).
 
+## [2.10.2] - 2022-02-26
+
+### Changed
+First fork version
+
 ## [2.10.1] - 2022-02-25
 
 ### Added
