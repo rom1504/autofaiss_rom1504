@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](https://semver.org).
 
+## [2.11.0] - 2022-03-04
+
+### Changed
+fix training memory estimation
+Save temporary indices directly to the specified temporary files instead of doing a copy first
+Read indices by small batch one after the other to avoid out of disk error
+replace embedding iterator by embedding reader
+produce less indices in distributed mode
+
+
 ## [2.10.2] - 2022-02-26
 
 ### Changed
