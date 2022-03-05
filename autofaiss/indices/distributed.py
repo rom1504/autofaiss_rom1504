@@ -195,7 +195,7 @@ def _merge_index(
 
 
 def _get_file_system(path: str) -> fsspec.AbstractFileSystem:
-    return fsspec.core.url_to_fs(path)[0]
+    return fsspec.core.url_to_fs(path, use_listings_cache=False)[0]
 
 
 def _merge_to_n_indices(spark_session, n: int, src_folder: str):
