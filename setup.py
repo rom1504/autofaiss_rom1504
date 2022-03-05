@@ -28,7 +28,7 @@ if __name__ == "__main__":
 
     # Run setup
     setuptools.setup(
-        name="autofaiss",
+        name="autofaiss_rom1504",
         version=metadata["version"],
         classifiers=[
             "License :: OSI Approved :: Apache Software License",
