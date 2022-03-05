@@ -115,9 +115,8 @@
         <span class="c1"># pylint: disable=bare-except</span>
         <span class="n">query_embeddings</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">embedding_reader</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">query_max</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">query_max</span><span class="p">))</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">query_embeddings</span> <span class="o">=</span> <span class="n">embedding_reader</span>
+        <span class="n">query_embeddings</span> <span class="o">=</span> <span class="n">embedding_reader</span><span class="p">[:</span><span class="n">query_max</span><span class="p">]</span>
 
-    <span class="n">query_embeddings</span> <span class="o">=</span> <span class="n">query_embeddings</span><span class="p">[:</span><span class="n">query_max</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">omp_threads</span><span class="p">:</span>
         <span class="n">faiss</span><span class="o">.</span><span class="n">omp_set_num_threads</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">speeds_ms</span> <span class="o">=</span> <span class="n">search_speed_test</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">query_embeddings</span><span class="p">,</span> <span class="n">ksearch</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">timout_s</span><span class="o">=</span><span class="mf">10.0</span><span class="p">)</span>
@@ -161,7 +160,7 @@
     <span class="k">if</span> <span class="n">ground_truth</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">embedding_reader</span><span class="p">,</span> <span class="n">EmbeddingReader</span><span class="p">):</span>
             <span class="n">ground_truth_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">embedding_reader</span><span class="o">.</span><span class="n">embeddings_folder</span><span class="si">}</span><span class="s2">/small_ground_truth_test.gt&quot;</span>
-            <span class="n">fs</span><span class="p">,</span> <span class="n">path</span> <span class="o">=</span> <span class="n">fsspec</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">url_to_fs</span><span class="p">(</span><span class="n">ground_truth_path</span><span class="p">,</span> <span class="n">use_listings_cache</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">fs</span><span class="p">,</span> <span class="n">path</span> <span class="o">=</span> <span class="n">fsspec</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">url_to_fs</span><span class="p">(</span><span class="n">ground_truth_path</span><span class="p">)</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">fs</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
 
                 <span class="k">with</span> <span class="n">Timeit</span><span class="p">(</span><span class="s2">&quot;-&gt; Compute small ground truth&quot;</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
