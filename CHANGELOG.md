@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 
 
+## [2.11.2] - 2022-03-05
+
+### Changed
+disable listing cache in fsspec
+
 ## [2.11.1] - 2022-03-04
 
 ### Changed
