@@ -279,7 +279,7 @@
 
 
 <span class="k">def</span> <span class="nf">_get_file_system</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">fsspec</span><span class="o">.</span><span class="n">AbstractFileSystem</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">fsspec</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">url_to_fs</span><span class="p">(</span><span class="n">path</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">fsspec</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">url_to_fs</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">use_listings_cache</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
 
 <span class="k">def</span> <span class="nf">_merge_to_n_indices</span><span class="p">(</span><span class="n">spark_session</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">src_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
