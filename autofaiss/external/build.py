@@ -127,7 +127,9 @@ def create_index(
 
     index_needs_training = check_if_index_needs_training(index_key)
 
-    if index_needs_training:
+    if True:
+        pass
+    elif index_needs_training:
 
         # Extract training vectors
         with Timeit("-> Extract training vectors", indent=2):
