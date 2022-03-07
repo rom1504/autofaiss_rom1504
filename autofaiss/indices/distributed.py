@@ -273,8 +273,6 @@ def run(
     """
     temporary_indices_folder = make_path_absolute(temporary_indices_folder)
     fs = _get_file_system(temporary_indices_folder)
-    if fs.exists(temporary_indices_folder):
-        fs.rm(temporary_indices_folder, recursive=True)
     stage1_folder = temporary_indices_folder.rstrip("/") + "/stage-1"
     ss = _get_pyspark_active_session()
     if False:
