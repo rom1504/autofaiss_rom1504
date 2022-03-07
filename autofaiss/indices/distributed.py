@@ -298,6 +298,6 @@ def run(
         else:
             final_folder = temporary_indices_folder.rstrip("/") + "/final"
             next_stage_folder = _merge_to_n_indices(
-                spark_session=ss, n=nb_indices_to_keep, src_folder=stage2_folder, dst_folder=final_folder
+                spark_session=ss, n=nb_indices_to_keep, src_folder=next_stage_folder, dst_folder=final_folder
             )
             return None, next_stage_folder

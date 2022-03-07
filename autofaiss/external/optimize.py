@@ -483,7 +483,7 @@ def optimize_and_measure_indices(
     ]
 
     def _read_one_index(index_file_path: str):
-        with fs.open(index_file_path, "rb").open() as f:
+        with fs.open(index_file_path, "rb") as f:
             return faiss.read_index(faiss.PyCallbackIOReader(f.read))
 
     index_path2_metric_infos: Dict[str, Dict] = {}
