@@ -211,7 +211,9 @@
 
     <span class="n">index_needs_training</span> <span class="o">=</span> <span class="n">check_if_index_needs_training</span><span class="p">(</span><span class="n">index_key</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">index_needs_training</span><span class="p">:</span>
+    <span class="k">if</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">pass</span>
+    <span class="k">elif</span> <span class="n">index_needs_training</span><span class="p">:</span>
 
         <span class="c1"># Extract training vectors</span>
         <span class="k">with</span> <span class="n">Timeit</span><span class="p">(</span><span class="s2">&quot;-&gt; Extract training vectors&quot;</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
