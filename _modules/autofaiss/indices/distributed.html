@@ -357,8 +357,6 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">temporary_indices_folder</span> <span class="o">=</span> <span class="n">make_path_absolute</span><span class="p">(</span><span class="n">temporary_indices_folder</span><span class="p">)</span>
     <span class="n">fs</span> <span class="o">=</span> <span class="n">_get_file_system</span><span class="p">(</span><span class="n">temporary_indices_folder</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">fs</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">temporary_indices_folder</span><span class="p">):</span>
-        <span class="n">fs</span><span class="o">.</span><span class="n">rm</span><span class="p">(</span><span class="n">temporary_indices_folder</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">stage1_folder</span> <span class="o">=</span> <span class="n">temporary_indices_folder</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/stage-1&quot;</span>
     <span class="n">ss</span> <span class="o">=</span> <span class="n">_get_pyspark_active_session</span><span class="p">()</span>
     <span class="k">if</span> <span class="kc">False</span><span class="p">:</span>
