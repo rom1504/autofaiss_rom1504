@@ -382,7 +382,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">final_folder</span> <span class="o">=</span> <span class="n">temporary_indices_folder</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/final&quot;</span>
             <span class="n">next_stage_folder</span> <span class="o">=</span> <span class="n">_merge_to_n_indices</span><span class="p">(</span>
-                <span class="n">spark_session</span><span class="o">=</span><span class="n">ss</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">nb_indices_to_keep</span><span class="p">,</span> <span class="n">src_folder</span><span class="o">=</span><span class="n">stage2_folder</span><span class="p">,</span> <span class="n">dst_folder</span><span class="o">=</span><span class="n">final_folder</span>
+                <span class="n">spark_session</span><span class="o">=</span><span class="n">ss</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">nb_indices_to_keep</span><span class="p">,</span> <span class="n">src_folder</span><span class="o">=</span><span class="n">next_stage_folder</span><span class="p">,</span> <span class="n">dst_folder</span><span class="o">=</span><span class="n">final_folder</span>
             <span class="p">)</span>
             <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="n">next_stage_folder</span></div>
 </pre></div>
