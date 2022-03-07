@@ -277,34 +277,35 @@ def run(
         fs.rm(temporary_indices_folder, recursive=True)
     stage1_folder = temporary_indices_folder.rstrip("/") + "/stage-1"
     ss = _get_pyspark_active_session()
-    # broadcast the index bytes
-    trained_index_bytes = get_bytes_from_index(faiss_index)
-    broadcast_trained_index_bytes = ss.sparkContext.broadcast(trained_index_bytes)
-    sc = ss._jsc.sc()  # pylint: disable=protected-access
-    n_workers = len(sc.statusTracker().getExecutorInfos()) - 1
+    if False:
+        # broadcast the index bytes
+        trained_index_bytes = get_bytes_from_index(faiss_index)
+        broadcast_trained_index_bytes = ss.sparkContext.broadcast(trained_index_bytes)
+        sc = ss._jsc.sc()  # pylint: disable=protected-access
+        n_workers = len(sc.statusTracker().getExecutorInfos()) - 1
 
-    # maximum between the number of spark workers, 100M embeddings per task and the number of indices to keep
-    estimated_nb_batches = max(n_workers, int(embedding_reader.count / (10 ** 7)), nb_indices_to_keep)
-    batch_size = math.ceil(embedding_reader.count / estimated_nb_batches)
-    nb_batches = math.ceil(embedding_reader.count / batch_size)
+        # maximum between the number of spark workers, 100M embeddings per task and the number of indices to keep
+        estimated_nb_batches = max(n_workers, int(embedding_reader.count / (10 ** 7)), nb_indices_to_keep)
+        batch_size = math.ceil(embedding_reader.count / estimated_nb_batches)
+        nb_batches = math.ceil(embedding_reader.count / batch_size)
 
-    batches = _batch_loader(batch_size=batch_size, nb_batches=nb_batches)
-    rdd = ss.sparkContext.parallelize(batches, nb_batches)
-    with Timeit("-> Adding indices", indent=2):
-        rdd.foreach(
-            lambda x: _add_index(
-                batch_id=x[0],
-                start=x[1],
-                end=x[2],
-                memory_available_for_adding=memory_available_for_adding,
-                broadcast_trained_index_bytes=broadcast_trained_index_bytes,
-                embedding_reader=embedding_reader,
-                small_indices_folder=stage1_folder,
-                num_cores=num_cores_per_executor,
-                embedding_ids_df_handler=embedding_ids_df_handler,
-                nb_batches=nb_batches,
+        batches = _batch_loader(batch_size=batch_size, nb_batches=nb_batches)
+        rdd = ss.sparkContext.parallelize(batches, nb_batches)
+        with Timeit("-> Adding indices", indent=2):
+            rdd.foreach(
+                lambda x: _add_index(
+                    batch_id=x[0],
+                    start=x[1],
+                    end=x[2],
+                    memory_available_for_adding=memory_available_for_adding,
+                    broadcast_trained_index_bytes=broadcast_trained_index_bytes,
+                    embedding_reader=embedding_reader,
+                    small_indices_folder=stage1_folder,
+                    num_cores=num_cores_per_executor,
+                    embedding_ids_df_handler=embedding_ids_df_handler,
+                    nb_batches=nb_batches,
+                )
             )
-        )
 
     with Timeit("-> Merging indices", indent=2):
         stage2_folder = temporary_indices_folder.rstrip("/") + "/stage-2"
