@@ -307,9 +307,10 @@ def run(
 
     with Timeit("-> Merging indices", indent=2):
         stage2_folder = temporary_indices_folder.rstrip("/") + "/stage-2"
-        next_stage_folder, _ = _merge_to_n_indices(
-            spark_session=ss, n=100, src_folder=stage1_folder, dst_folder=stage2_folder, index_optimizer=None
-        )
+        #next_stage_folder, _ = _merge_to_n_indices(
+        #    spark_session=ss, n=100, src_folder=stage1_folder, dst_folder=stage2_folder, index_optimizer=None
+        #)
+        next_stage_folder = stage2_folder
         if nb_indices_to_keep == 1:
             merged_index, _ = _merge_index(small_indices_folder=next_stage_folder, nb_batches=1)
             fs.rm(temporary_indices_folder, recursive=True)
